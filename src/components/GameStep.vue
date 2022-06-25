@@ -37,10 +37,8 @@
       }
     } else if (event.code === 'Backspace' && canErase) {
       cleanLetter()
-    } else if (event.code === 'Enter') {
-      if (success) {
-        emit('advance')
-      }
+    } else if (event.code === 'Enter' && success) {
+      emit('advance')
     }
   })
 </script>
