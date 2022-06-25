@@ -14,11 +14,9 @@
   let step = $ref(0)
   const word = $computed(() => shuffledWords[step])
 
-  function handleResult (status) {
+  function nextStep () {
+    points += 100
     step += 1
-    if (status === 'success') {
-      points += 100
-    }
   }
 
   function restartGame () {
@@ -31,7 +29,7 @@
 <template>
   <div class="game">
     <template v-if="step < words.length">
-      <GameStep :key="word" :last="step === words.length - 1" :word="word" @result="handleResult"/>
+      <GameStep :key="word" :last="step === words.length - 1" :word="word" @advance="nextStep"/>
       <div class="game__points" v-if="points > 0">
         Você fez <strong>{{ points }}</strong> pontos
       </div>

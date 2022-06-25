@@ -3,14 +3,12 @@
     points: Number,
   })
   const emit = defineEmits(['reset'])
-
-  const words = $computed(() => points / 100)
 </script>
 
 <template>
   <div class="game-over">
     <h1>Fim</h1>
-    <p>Você acertou <strong>{{ words }}</strong> palavra{{ words === 1 ? '' : 's' }} e fez <strong>{{ points }}</strong> pontos!</p>
+    <p>Você fez <strong>{{ points }}</strong> pontos!</p>
     <button class="game-over__reset" type="button" @click="$emit('reset')">
       <Icon icon="iconoir:restart"/>
       Reiniciar jogo

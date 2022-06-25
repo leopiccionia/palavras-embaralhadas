@@ -8,33 +8,24 @@
     last: Boolean,
     word: String,
   })
-  const emit = defineEmits(['result'])
+  const emit = defineEmits(['advance'])
 
   const letters = shuffle(word.split(''))
 
   const clicks = $ref([])
-  let status = $ref('')
   let text = $ref('')
+
+  const success = $computed(() => text === word)
+  const canErase = $computed(() => text.length > 0 && !success)
 
   function addLetter (letter, index) {
     text += letter
     clicks.push(index)
-    if (text.length === word.length) {
-      processEnd()
-    }
   }
 
   function cleanLetter () {
     text = text.slice(0, -1)
     clicks.pop()
-  }
-
-  function processEnd () {
-    if (text === word) {
-      status = 'success'
-    } else {
-      status = 'failure'
-    }
   }
 
   useEventListener('keydown', (event) => {
@@ -44,9 +35,11 @@
       if (position !== -1) {
         addLetter(key, position)
       }
-    } else if (event.code === 'Backspace') {
-      if (text.length > 0 && !status) {
-        cleanLetter()
+    } else if (event.code === 'Backspace' && canErase) {
+      cleanLetter()
+    } else if (event.code === 'Enter') {
+      if (success) {
+        emit('advance')
       }
     }
   })
@@ -67,23 +60,19 @@
           {{ letter }}
         </button>
       </div>
-      <button class="game-step__erase" key="clear" type="button" @click="cleanLetter" v-if="text.length > 0 && !status">
+      <button class="game-step__erase" key="clear" type="button" @click="cleanLetter" v-if="canErase">
         <Icon icon="iconoir:erase"/>
         Apagar
       </button>
     </div>
     <div class="game-step__text">
       <div class="game-step__word">{{ text }}</div>
-      <div class="game-step__status" :class="status" v-if="status">
-        <p v-if="status === 'success'">
+      <div class="game-step__success" v-if="success">
+        <p>
           <Icon icon="ep:success-filled"/>
           Parabéns!
         </p>
-        <p v-if="status === 'failure'">
-          <Icon icon="ep:warning-filled"/>
-          A palavra era <strong>{{ word }}</strong>
-        </p>
-        <button class="game-step__next-word" type="button" @click="$emit('result', status)">
+        <button class="game-step__next-word" type="button" @click="$emit('advance')">
           {{ last ? 'Terminar' : 'Próxima palavra' }}
           <Icon icon="ep:arrow-right-bold"/>
         </button>
@@ -155,26 +144,13 @@
       width: 100%;
     }
 
-    &__status {
+    &__success {
+      color: green;
       display: block;
       margin-top: 0.5rem;
 
       p {
         user-select: none;
-      }
-
-      &.failure {
-        color: darkorange;
-
-        strong {
-          color: green;
-          font-size: 1.25rem;
-          font-weight: inherit;
-        }
-      }
-
-      &.success {
-        color: green;
       }
     }
 
