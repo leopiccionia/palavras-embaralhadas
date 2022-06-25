@@ -5,7 +5,7 @@
     word: String,
   })
 
-  const { isPlaying, isSupported, speak } = $(useSpeechSynthesis($$(word), {
+  const { isPlaying, isSupported, speak } = $(useSpeechSynthesis(word, {
     lang: 'pt-BR',
   }))
 </script>
