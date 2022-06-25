@@ -16,6 +16,8 @@
   let status = $ref('')
   let text = $ref('')
 
+  const canErase = $computed(() => text.length > 0 && !status)
+
   function addLetter (letter, index) {
     text += letter
     clicks.push(index)
@@ -44,10 +46,10 @@
       if (position !== -1) {
         addLetter(key, position)
       }
-    } else if (event.code === 'Backspace') {
-      if (text.length > 0 && !status) {
-        cleanLetter()
-      }
+    } else if (event.code === 'Backspace' && canErase) {
+      cleanLetter()
+    } else if (event.code === 'Enter' && status) {
+      emit('result', status)
     }
   })
 </script>
@@ -67,7 +69,7 @@
           {{ letter }}
         </button>
       </div>
-      <button class="game-step__erase" key="clear" type="button" @click="cleanLetter" v-if="text.length > 0 && !status">
+      <button class="game-step__erase" key="clear" type="button" @click="cleanLetter" v-if="canErase">
         <Icon icon="iconoir:erase"/>
         Apagar
       </button>
