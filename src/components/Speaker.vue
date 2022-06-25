@@ -8,10 +8,12 @@
   const { isPlaying, isSupported, speak } = $(useSpeechSynthesis(word, {
     lang: 'pt-BR',
   }))
+  const voices = $computed(() => isSupported ? window.speechSynthesis.getVoices() : [])
+  const canSpeak = $computed(() => isSupported && voices.length > 0)
 </script>
 
 <template>
-  <button aria-label="Tocar som" class="speaker" :disabled="isPlaying" @click="speak(word)" v-if="isSupported">
+  <button aria-label="Tocar som" class="speaker" :disabled="isPlaying" @click="speak(word)" v-if="canSpeak">
     <Icon icon="fluent:speaker-2-28-filled"/>
   </button>
 </template>
