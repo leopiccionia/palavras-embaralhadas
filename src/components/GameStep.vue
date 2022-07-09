@@ -39,14 +39,18 @@
     }
   }
 
-  useEventListener('keydown', (event) => {
+  /* Handle printable characters -- including diacritics */
+  useEventListener('keypress', (event) => {
     const key = event.key.toLocaleLowerCase()
-    if (key.length === 1 && key >= 'a' && key <= 'z') {
-      const position = letters.findIndex((letter, index) => letter === key && !clicks.includes(index))
-      if (position !== -1) {
-        addLetter(key, position)
-      }
-    } else if (event.code === 'Backspace' && canErase) {
+    const position = letters.findIndex((letter, index) => letter === key && !clicks.includes(index))
+    if (position !== -1) {
+      addLetter(key, position)
+    }
+  })
+
+  /* Handle non-printable characters */
+  useEventListener('keydown', (event) => {
+    if (event.code === 'Backspace' && canErase) {
       cleanLetter()
     } else if (event.code === 'Enter' && status) {
       emit('result', status)
