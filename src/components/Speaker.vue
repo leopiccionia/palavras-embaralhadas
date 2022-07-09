@@ -23,13 +23,16 @@
     align-items: center;
     background-color: darkred;
     border-radius: 50%;
+    bottom: 0.5rem;
     color: white;
     display: flex;
     font-size: 1.5rem;
+    left: 0.5rem;
     height: 2.5rem;
     justify-content: center;
     line-height: 1;
     margin: 0.5rem auto;
+    position: absolute;
     width: 2.5rem;
   }
 </style>

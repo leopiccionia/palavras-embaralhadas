@@ -64,10 +64,10 @@
       Desembaralhe as letras para formar palavras
     </div>
     <div class="game-step__image">
-      <img :alt="word" :src="`/words/${word}.jpg`" />
+      <img :alt="word" height="300" :src="`/words/${word}.jpg`" width="300"/>
       <Speaker :key="word" :word="word"/>
     </div>
-    <div class="game-step__form">
+    <div class="game-step__form" :class="{ '-solved': status }">
       <div class="game-step__letters">
         <button v-for="(letter, index) of letters" class="game-step__letter" :disabled="clicks.includes(index)" :key="index" type="button" @click="addLetter(letter, index)">
           {{ letter }}
@@ -79,7 +79,7 @@
       </button>
     </div>
     <div class="game-step__text">
-      <div class="game-step__word">{{ text }}</div>
+      <div class="game-step__word" v-show="text">{{ text }}</div>
       <div class="game-step__status" :class="status" v-if="status">
         <p v-if="status === 'success'">
           <Icon icon="ep:success-filled"/>
@@ -101,12 +101,14 @@
 <style lang="scss">
   .game-step {
     display: grid;
-    grid-gap: 1rem;
+    gap: 1rem;
     grid-template-columns: 300px 17rem;
     margin: auto;
+    padding: 1rem;
     width: fit-content;
 
     @media screen and (max-width: 35rem) {
+      gap: 1rem 0;
       grid-template-columns: 1fr;
 
       & > * {
@@ -123,8 +125,18 @@
       padding: 10px;
     }
 
+    &__form.-solved {
+
+      @media screen and (max-width: 35rem) {
+        display: none;
+      }
+    }
+
     &__image {
+      margin: auto;
       max-width: calc(100vw - 2rem);
+      position: relative;
+      width: 300px;
     }
 
     &__instructions {
@@ -146,7 +158,7 @@
 
     &__letters {
       display: grid;
-      grid-gap: 0.5rem;
+      gap: 0.5rem;
       grid-template-columns: repeat(5, 3rem);
       justify-content: center;
     }

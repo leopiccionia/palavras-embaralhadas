@@ -50,7 +50,6 @@
     }
 
     &__points {
-      margin-top: 1.5rem;
       user-select: none;
 
       strong {

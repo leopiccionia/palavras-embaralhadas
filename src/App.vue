@@ -19,9 +19,12 @@
     font-family: 'Comfortaa', sans-serif;
   }
 
+  html, body {
+    margin: 0;
+  }
+
   html {
     font-size: 125%;
-    padding: 1rem;
   }
 
   button {
