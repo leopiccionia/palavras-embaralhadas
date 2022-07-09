@@ -33,4 +33,9 @@
     cursor: pointer;
     font-family: inherit;
   }
+
+  svg.iconify {
+    display: inline-block;
+    vertical-align: text-top;
+  }
 </style>
