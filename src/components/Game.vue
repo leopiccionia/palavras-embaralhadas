@@ -30,8 +30,8 @@
 
 <template>
   <div class="game">
-    <template v-if="step < words.length">
-      <GameStep :key="word" :last="step === words.length - 1" :word="word" @result="handleResult"/>
+    <template v-if="step < shuffledWords.length">
+      <GameStep :key="word" :last="step === shuffledWords.length - 1" :word="word" @result="handleResult"/>
       <div class="game__points" v-if="points > 0">
         Você fez <strong>{{ points }}</strong> pontos
       </div>
