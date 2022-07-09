@@ -67,6 +67,7 @@
       <img :alt="word" height="300" :src="`/words/${word}.jpg`" width="300"/>
       <Speaker :key="word" :word="word"/>
     </div>
+    <div class="game-step__word mobile">{{ text }}</div>
     <div class="game-step__form" :class="{ '-solved': status }">
       <div class="game-step__letters">
         <button v-for="(letter, index) of letters" class="game-step__letter" :disabled="clicks.includes(index)" :key="index" type="button" @click="addLetter(letter, index)">
@@ -79,7 +80,7 @@
       </button>
     </div>
     <div class="game-step__text">
-      <div class="game-step__word" v-show="text">{{ text }}</div>
+      <div class="game-step__word desktop">{{ text }}</div>
       <div class="game-step__status" :class="status" v-if="status">
         <p v-if="status === 'success'">
           <Icon icon="ep:success-filled"/>
@@ -121,7 +122,6 @@
       color: white;
       font-size: 1rem;
       margin-top: 1rem;
-      width: 100%;
       padding: 10px;
     }
 
@@ -177,7 +177,12 @@
       display: block;
       margin-top: 0.5rem;
 
+      @media screen and (max-width: 35rem) {
+        margin-top: 0;
+      }
+
       p {
+        margin: 0;
         user-select: none;
       }
 
@@ -203,8 +208,24 @@
     &__word {
       color: mediumblue;
       font-size: 2.5rem;
-      margin-top: 1rem;
+      height: 1em;
       user-select: none;
+
+      &.desktop {
+        margin-top: 1rem;
+
+        @media screen and (max-width: 35rem) {
+          display: none;
+        }
+      }
+
+      &.mobile {
+        display: none;
+
+        @media screen and (max-width: 35rem) {
+          display: block;
+        }
+      }
     }
   }
 </style>
