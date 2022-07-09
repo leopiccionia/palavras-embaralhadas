@@ -123,6 +123,7 @@
       font-size: 1rem;
       margin-top: 1rem;
       padding: 10px;
+      width: 100%;
     }
 
     &__form.-solved {
