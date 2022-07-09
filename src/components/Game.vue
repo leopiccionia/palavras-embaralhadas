@@ -1,5 +1,6 @@
 <script setup>
   import GameOver from './GameOver.vue'
+  import GameStart from './GameStart.vue'
   import GameStep from './GameStep.vue'
   import { shuffle } from '../utils/shuffle'
   import { words } from '../words.json'
@@ -10,6 +11,7 @@
 
   let shuffledWords = shuffleWords()
 
+  let started = $ref(false)
   let points = $ref(0)
   let step = $ref(0)
   const word = $computed(() => shuffledWords[step])
@@ -26,11 +28,16 @@
     points = 0
     step = 0
   }
+
+  function startGame () {
+    started = true
+  }
 </script>
 
 <template>
   <div class="game">
-    <template v-if="step < shuffledWords.length">
+    <GameStart @start="startGame" v-if="!started"/>
+    <template v-else-if="step < shuffledWords.length">
       <GameStep :key="word" :last="step === shuffledWords.length - 1" :word="word" @result="handleResult"/>
       <div class="game__points" v-if="points > 0">
         Você fez <strong>{{ points }}</strong> pontos
