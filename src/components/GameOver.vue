@@ -1,10 +1,18 @@
 <script setup>
+  import { useEventListener } from '@vueuse/core'
+
   const { points } = defineProps({
     points: Number,
   })
   const emit = defineEmits(['reset'])
 
   const words = $computed(() => points / 100)
+
+  useEventListener('keydown', (event) => {
+    if (event.code === 'Enter') {
+      emit('reset')
+    }
+  })
 </script>
 
 <template>
@@ -22,6 +30,7 @@
   .game-over {
     margin: auto;
     max-width: 30rem;
+    padding: 1rem;
 
     h1 {
       color: mediumblue;
