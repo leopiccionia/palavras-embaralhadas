@@ -20,7 +20,7 @@
     <h1>Fim</h1>
     <p>Você acertou <strong>{{ words }}</strong> palavra{{ words === 1 ? '' : 's' }} e fez <strong>{{ points }}</strong> pontos!</p>
     <button class="game-over__reset" type="button" @click="$emit('reset')">
-      <Icon icon="iconoir:restart"/>
+      <Icon icon="fa6-solid:arrow-rotate-right"/>
       Reiniciar jogo
     </button>
   </div>

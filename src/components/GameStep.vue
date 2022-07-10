@@ -63,7 +63,7 @@
         </button>
       </div>
       <button class="game-step__erase" key="clear" type="button" @click="cleanLetter" v-if="canErase">
-        <Icon icon="iconoir:erase"/>
+        <Icon icon="fa6-solid:delete-left"/>
         Apagar
       </button>
     </div>

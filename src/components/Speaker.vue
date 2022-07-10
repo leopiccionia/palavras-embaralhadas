@@ -14,7 +14,7 @@
 
 <template>
   <button aria-label="Tocar som" class="speaker" :disabled="isPlaying" @click="speak(word)" v-if="canSpeak">
-    <Icon icon="fluent:speaker-2-28-filled"/>
+    <Icon icon="fa6-solid:volume-low"/>
   </button>
 </template>
 

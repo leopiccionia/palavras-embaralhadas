@@ -8,12 +8,12 @@
 <template>
   <div class="game-score">
     <div class="game-score__container">
-      <Icon icon="iconoir:timer"/>
+      <Icon icon="fa6-solid:clock"/>
       <span class="sr-only">Tempo:</span>
       <span>{{ 60 - timer }}</span>
     </div>
     <div class="game-score__container">
-      <Icon icon="iconoir:star-outline"/>
+      <Icon icon="fa6-solid:star"/>
       <span class="sr-only">Pontos:</span>
       <span>{{ points }}</span>
     </div>
