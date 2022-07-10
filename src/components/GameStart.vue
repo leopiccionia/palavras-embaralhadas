@@ -7,7 +7,7 @@
     <h1>Boas Vindas</h1>
     <p>Você terá um minuto para formar o maior número de palavras que conseguir</p>
     <button class="game-start__button" type="button" @click="$emit('start')">
-      <Icon icon="iconoir:play-outline"/>
+      <Icon icon="fa6-solid:circle-play"/>
       Começar
     </button>
   </div>
