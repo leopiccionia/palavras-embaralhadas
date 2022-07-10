@@ -10,6 +10,10 @@
       <Icon icon="fa6-solid:circle-play"/>
       Começar
     </button>
+    <p class="game-start__credits">
+      Site originalmente desenvolvido por Leonardo Piccioni de Almeida.
+      <a href="https://github.com/leopiccionia/palavras-embaralhadas" target="_blank">Colabore</a>.
+    </p>
   </div>
 </template>
 
@@ -36,6 +40,15 @@
       font-size: 1.25rem;
       margin-top: 1.5rem;
       padding: 10px;
+    }
+
+    &__credits {
+      font-size: 0.75rem !important;
+      margin-top: 2rem;
+
+      a {
+        color: variables.$blue;
+      }
     }
   }
 </style>
