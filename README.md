@@ -14,4 +14,6 @@ Para adicionar uma nova palavra:
 Alguns sites que podem auxiliar na fácil obtenção de imagens em domínio público:
 
 - [Flickr](https://www.flickr.com/creativecommons/cc0-1.0/tags/)
+- [Pexels](https://www.pexels.com/)
+- [Pixabay](https://pixabay.com/)
 - [Wikimedia Commons](https://commons.wikimedia.org/w/index.php?search=&title=Special:MediaSearch&go=Go&type=image&haslicense=unrestricted)
