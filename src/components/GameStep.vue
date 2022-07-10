@@ -52,7 +52,7 @@
       Desembaralhe as letras para formar palavras
     </div>
     <div class="game-step__image">
-      <img :alt="word" height="300" :src="`/words/${word}.jpg`" width="300"/>
+      <img :alt="word" height="300" :src="`./words/${word}.jpg`" width="300"/>
       <Speaker :key="word" :word="word"/>
     </div>
     <div class="game-step__word mobile">{{ text }}</div>
