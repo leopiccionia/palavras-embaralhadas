@@ -1,0 +1,13 @@
+$black: #222222;
+$blue: #0035d4;
+$green: #16a04d;
+$orange: #ff7f2a;
+$red: #d40019;
+$white: #f7f7f7;
+$yellow: #ffd700;
+
+@mixin mobile {
+  @media screen and (max-width: 35rem) {
+    @content;
+  }
+}

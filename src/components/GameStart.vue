@@ -14,13 +14,15 @@
 </template>
 
 <style lang="scss">
+  @use '../variables.scss';
+
   .game-start {
     margin: auto;
     max-width: 30rem;
     padding: 1rem;
 
     h1 {
-      color: mediumblue;
+      color: variables.$blue;
       font-size: 2.5rem;
     }
 
@@ -29,7 +31,7 @@
     }
 
     &__button {
-      background-color: crimson;
+      background-color: variables.$red;
       color: white;
       font-size: 1.25rem;
       margin-top: 1.5rem;

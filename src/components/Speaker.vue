@@ -19,9 +19,11 @@
 </template>
 
 <style lang="scss">
+  @use '../variables.scss';
+
   .speaker {
     align-items: center;
-    background-color: crimson;
+    background-color: variables.$red;
     border-radius: 50%;
     bottom: 0.5rem;
     color: white;

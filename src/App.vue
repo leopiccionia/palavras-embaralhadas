@@ -7,6 +7,8 @@
 </template>
 
 <style lang="scss">
+  @use './variables.scss';
+
   @font-face {
     font-display: swap;
     font-family: 'Comfortaa';
@@ -14,8 +16,8 @@
   }
 
   :root {
-    background-color: #F7F7F7;
-    color: #222;
+    background-color: variables.$white;
+    color: variables.$black;
     font-family: 'Comfortaa', sans-serif;
   }
 

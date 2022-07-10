@@ -21,6 +21,8 @@
 </template>
 
 <style lang="scss">
+  @use '../variables.scss';
+
   .game-score {
     display: grid;
     gap: 1rem;
@@ -31,7 +33,7 @@
     user-select: none;
 
     &__container {
-      background-color: crimson;
+      background-color: variables.$red;
       border-radius: 5px;
       color: white;
       font-variant-numeric: tabular-nums;

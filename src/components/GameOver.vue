@@ -27,13 +27,15 @@
 </template>
 
 <style lang="scss">
+  @use '../variables.scss';
+
   .game-over {
     margin: auto;
     max-width: 30rem;
     padding: 1rem;
 
     h1 {
-      color: mediumblue;
+      color: variables.$blue;
       font-size: 2.5rem;
     }
 
@@ -42,13 +44,13 @@
 
       strong {
         font-size: 1.25rem;
-        color: green;
+        color: variables.$green;
         font-weight: inherit;
       }
     }
 
     &__reset {
-      background-color: darkorange;
+      background-color: variables.$orange;
       color: white;
       font-size: 1.25rem;
       margin-top: 1.5rem;
