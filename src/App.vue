@@ -12,7 +12,7 @@
   @font-face {
     font-display: swap;
     font-family: 'Comfortaa';
-    src: url('/fonts/Comfortaa-SemiBold.ttf');
+    src: url('./assets/fonts/Comfortaa-Bold.ttf');
   }
 
   :root {
