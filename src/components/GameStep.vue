@@ -4,39 +4,29 @@
   import Speaker from './Speaker.vue'
   import { shuffle } from '../utils/shuffle'
 
-  const { last, word } = defineProps({
-    last: Boolean,
+  const { word } = defineProps({
     word: String,
   })
-  const emit = defineEmits(['result'])
+  const emit = defineEmits(['success'])
 
   const letters = shuffle(word.split(''))
 
   const clicks = $ref([])
-  let status = $ref('')
   let text = $ref('')
 
-  const canErase = $computed(() => text.length > 0 && !status)
+  const canErase = $computed(() => text.length > 0 && text !== word)
 
   function addLetter (letter, index) {
     text += letter
     clicks.push(index)
-    if (text.length === word.length) {
-      processEnd()
+    if (text === word) {
+      setTimeout(() => emit('success'), 250)
     }
   }
 
   function cleanLetter () {
     text = text.slice(0, -1)
     clicks.pop()
-  }
-
-  function processEnd () {
-    if (text === word) {
-      status = 'success'
-    } else {
-      status = 'failure'
-    }
   }
 
   /* Handle printable characters -- including diacritics */
@@ -52,8 +42,6 @@
   useEventListener('keydown', (event) => {
     if (event.code === 'Backspace' && canErase) {
       cleanLetter()
-    } else if (event.code === 'Enter' && status) {
-      emit('result', status)
     }
   })
 </script>
@@ -68,7 +56,7 @@
       <Speaker :key="word" :word="word"/>
     </div>
     <div class="game-step__word mobile">{{ text }}</div>
-    <div class="game-step__form" :class="{ '-solved': status }">
+    <div class="game-step__form">
       <div class="game-step__letters">
         <button v-for="(letter, index) of letters" class="game-step__letter" :disabled="clicks.includes(index)" :key="index" type="button" @click="addLetter(letter, index)">
           {{ letter }}
@@ -81,20 +69,6 @@
     </div>
     <div class="game-step__text">
       <div class="game-step__word desktop">{{ text }}</div>
-      <div class="game-step__status" :class="status" v-if="status">
-        <p v-if="status === 'success'">
-          <Icon icon="ep:success-filled"/>
-          Parabéns!
-        </p>
-        <p v-if="status === 'failure'">
-          <Icon icon="ep:warning-filled"/>
-          A palavra era <strong>{{ word }}</strong>
-        </p>
-        <button class="game-step__next-word" type="button" @click="$emit('result', status)">
-          {{ last ? 'Terminar' : 'Próxima palavra' }}
-          <Icon icon="ep:arrow-right-bold"/>
-        </button>
-      </div>
     </div>
   </div>
 </template>
@@ -109,7 +83,7 @@
     width: fit-content;
 
     @media screen and (max-width: 35rem) {
-      gap: 1rem 0;
+      gap: 0.75rem 0;
       grid-template-columns: 1fr;
 
       & > * {
@@ -124,13 +98,6 @@
       margin-top: 1rem;
       padding: 10px;
       width: 100%;
-    }
-
-    &__form.-solved {
-
-      @media screen and (max-width: 35rem) {
-        display: none;
-      }
     }
 
     &__image {
@@ -164,46 +131,12 @@
       justify-content: center;
     }
 
-    &__next-word {
-      background-color: gold;
-      display: block;
-      font-size: 1rem;
-      margin: 1.5rem auto;
-      max-width: 15rem;
-      padding: 10px;
-      width: 100%;
-    }
-
-    &__status {
-      display: block;
-      margin-top: 0.5rem;
-
-      @media screen and (max-width: 35rem) {
-        margin-top: 0;
-      }
-
-      p {
-        margin: 0;
-        user-select: none;
-      }
-
-      &.failure {
-        color: darkorange;
-
-        strong {
-          color: green;
-          font-size: 1.25rem;
-          font-weight: inherit;
-        }
-      }
-
-      &.success {
-        color: green;
-      }
-    }
-
     &__text {
       grid-column-end: span 2;
+
+      @media screen and (max-width: 35rem) {
+        display: none;
+      }
     }
 
     &__word {
@@ -211,14 +144,6 @@
       font-size: 2.5rem;
       height: 1em;
       user-select: none;
-
-      &.desktop {
-        margin-top: 1rem;
-
-        @media screen and (max-width: 35rem) {
-          display: none;
-        }
-      }
 
       &.mobile {
         display: none;

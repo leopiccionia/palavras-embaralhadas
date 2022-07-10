@@ -26,12 +26,6 @@
 
     p {
       font-size: 1rem;
-
-      strong {
-        font-size: 1.25rem;
-        color: green;
-        font-weight: inherit;
-      }
     }
 
     &__button {

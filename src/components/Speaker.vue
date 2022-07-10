@@ -21,7 +21,7 @@
 <style lang="scss">
   .speaker {
     align-items: center;
-    background-color: darkred;
+    background-color: crimson;
     border-radius: 50%;
     bottom: 0.5rem;
     color: white;
