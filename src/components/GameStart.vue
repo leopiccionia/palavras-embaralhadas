@@ -43,8 +43,9 @@
     }
 
     &__credits {
-      font-size: 0.75rem !important;
-      margin-top: 2rem;
+      color: variables.$gray;
+      font-size: 0.875rem !important;
+      margin-top: 2.5rem;
 
       a {
         color: variables.$blue;
