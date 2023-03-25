@@ -1,4 +1,7 @@
 <script setup>
+  import PointsIcon from '~icons/fa6-solid/star'
+  import TimeIcon from '~icons/fa6-solid/clock'
+
   const { points, timer } = defineProps({
     points: Number,
     timer: Number,
@@ -8,12 +11,12 @@
 <template>
   <div class="game-score">
     <div class="game-score__container">
-      <Icon icon="fa6-solid:clock"/>
+      <TimeIcon/>
       <span class="sr-only">Tempo:</span>
       <span>{{ 60 - timer }}</span>
     </div>
     <div class="game-score__container">
-      <Icon icon="fa6-solid:star"/>
+      <PointsIcon/>
       <span class="sr-only">Pontos:</span>
       <span>{{ points }}</span>
     </div>

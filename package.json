@@ -8,13 +8,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@iconify/vue": "^4.1.0",
     "@vueuse/core": "^9.13.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
+    "@iconify-json/fa6-solid": "^1.1.12",
     "@vitejs/plugin-vue": "^4.1.0",
     "sass": "^1.60.0",
+    "unplugin-icons": "^0.15.3",
     "vite": "^4.2.1"
   }
 }

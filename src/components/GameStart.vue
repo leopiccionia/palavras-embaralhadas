@@ -1,4 +1,6 @@
 <script setup>
+  import PlayIcon from '~icons/fa6-solid/circle-play'
+
   const emit = defineEmits(['start'])
 </script>
 
@@ -7,7 +9,7 @@
     <h1>Boas Vindas</h1>
     <p>Você terá um minuto para formar o maior número de palavras que conseguir</p>
     <button class="game-start__button" type="button" @click="$emit('start')">
-      <Icon icon="fa6-solid:circle-play"/>
+      <PlayIcon/>
       Começar
     </button>
     <p class="game-start__credits">

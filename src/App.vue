@@ -36,9 +36,9 @@
     font-family: inherit;
   }
 
-  svg.iconify {
+  svg.icon {
     display: inline-block;
-    vertical-align: text-top;
+    vertical-align: text-bottom;
   }
 
   .sr-only {

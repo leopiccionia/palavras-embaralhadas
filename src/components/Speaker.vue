@@ -2,6 +2,8 @@
   import { useSpeechSynthesis } from '@vueuse/core'
   import { computed } from 'vue'
 
+  import SoundIcon from '~icons/fa6-solid/volume-low'
+
   const { word } = defineProps({
     word: String,
   })
@@ -15,7 +17,7 @@
 
 <template>
   <button aria-label="Tocar som" class="speaker" :disabled="isPlaying" @click="speak(word)" v-if="canSpeak">
-    <Icon icon="fa6-solid:volume-low"/>
+    <SoundIcon/>
   </button>
 </template>
 

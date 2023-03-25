@@ -2,6 +2,8 @@
   import { useEventListener } from '@vueuse/core'
   import { computed } from 'vue'
 
+  import RestartIcon from '~icons/fa6-solid/arrow-rotate-right'
+
   const { points } = defineProps({
     points: Number,
   })
@@ -21,7 +23,7 @@
     <h1>Fim</h1>
     <p>Você acertou <strong>{{ words }}</strong> palavra{{ words === 1 ? '' : 's' }} e fez <strong>{{ points }}</strong> pontos!</p>
     <button class="game-over__reset" type="button" @click="$emit('reset')">
-      <Icon icon="fa6-solid:arrow-rotate-right"/>
+      <RestartIcon/>
       Reiniciar jogo
     </button>
   </div>

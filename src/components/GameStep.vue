@@ -2,6 +2,8 @@
   import { useEventListener } from '@vueuse/core'
   import { computed, ref } from 'vue'
 
+  import DeleteIcon from '~icons/fa6-solid/delete-left'
+
   import Speaker from './Speaker.vue'
   import { shuffle } from '../utils/shuffle'
 
@@ -64,7 +66,7 @@
         </button>
       </div>
       <button class="game-step__erase" key="clear" type="button" @click="cleanLetter" v-if="canErase">
-        <Icon icon="fa6-solid:delete-left"/>
+        <DeleteIcon/>
         Apagar
       </button>
     </div>
