@@ -74,6 +74,8 @@
 </template>
 
 <style lang="scss">
+  @use '../variables.scss';
+
   .game-step {
     display: grid;
     gap: 1rem;
@@ -82,7 +84,7 @@
     padding: 1rem;
     width: fit-content;
 
-    @media screen and (max-width: 35rem) {
+    @include variables.mobile {
       gap: 0.75rem 0;
       grid-template-columns: 1fr;
 
@@ -92,7 +94,7 @@
     }
 
     &__erase {
-      background-color: darkorange;
+      background-color: variables.$orange;
       color: white;
       font-size: 1rem;
       margin-top: 1rem;
@@ -112,8 +114,8 @@
     }
 
     &__letter {
-      background-color: gold;
-      color: darkred;
+      background-color: variables.$yellow;
+      color: variables.$red;
       font-size: 2rem;
       height: 3rem;
       width: 3rem;
@@ -134,13 +136,13 @@
     &__text {
       grid-column-end: span 2;
 
-      @media screen and (max-width: 35rem) {
+      @include variables.mobile {
         display: none;
       }
     }
 
     &__word {
-      color: mediumblue;
+      color: variables.$blue;
       font-size: 2.5rem;
       height: 1em;
       user-select: none;
@@ -148,7 +150,7 @@
       &.mobile {
         display: none;
 
-        @media screen and (max-width: 35rem) {
+        @include variables.mobile {
           display: block;
         }
       }
