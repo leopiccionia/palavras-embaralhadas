@@ -1,15 +1,16 @@
 <script setup>
   import { useSpeechSynthesis } from '@vueuse/core'
+  import { computed } from 'vue'
 
   const { word } = defineProps({
     word: String,
   })
 
-  const { isPlaying, isSupported, speak } = $(useSpeechSynthesis(word, {
+  const { isPlaying, isSupported, speak } = useSpeechSynthesis(word, {
     lang: 'pt-BR',
-  }))
-  const voices = $computed(() => isSupported ? window.speechSynthesis.getVoices() : [])
-  const canSpeak = $computed(() => isSupported && voices.length > 0)
+  })
+  const voices = computed(() => isSupported.value ? window.speechSynthesis.getVoices() : [])
+  const canSpeak = computed(() => isSupported.value && voices.value.length > 0)
 </script>
 
 <template>

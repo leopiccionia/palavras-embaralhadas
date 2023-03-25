@@ -1,5 +1,6 @@
 <script setup>
   import { useEventListener } from '@vueuse/core'
+  import { computed, ref } from 'vue'
 
   import Speaker from './Speaker.vue'
   import { shuffle } from '../utils/shuffle'
@@ -11,28 +12,28 @@
 
   const letters = shuffle(word.split(''))
 
-  const clicks = $ref([])
-  let text = $ref('')
+  const clicks = ref([])
+  const text = ref('')
 
-  const canErase = $computed(() => text.length > 0 && text !== word)
+  const canErase = computed(() => text.value.length > 0 && text.value !== word)
 
   function addLetter (letter, index) {
-    text += letter
-    clicks.push(index)
-    if (text === word) {
+    text.value += letter
+    clicks.value.push(index)
+    if (text.value === word) {
       setTimeout(() => emit('success'), 250)
     }
   }
 
   function cleanLetter () {
-    text = text.slice(0, -1)
-    clicks.pop()
+    text.value = text.value.slice(0, -1)
+    clicks.value.pop()
   }
 
   /* Handle printable characters -- including diacritics */
   useEventListener('keypress', (event) => {
     const key = event.key.toLocaleLowerCase()
-    const position = letters.findIndex((letter, index) => letter === key && !clicks.includes(index))
+    const position = letters.findIndex((letter, index) => letter === key && !clicks.value.includes(index))
     if (position !== -1) {
       addLetter(key, position)
     }
@@ -40,7 +41,7 @@
 
   /* Handle non-printable characters */
   useEventListener('keydown', (event) => {
-    if (event.code === 'Backspace' && canErase) {
+    if (event.code === 'Backspace' && canErase.value) {
       cleanLetter()
     }
   })
@@ -107,6 +108,10 @@
       max-width: calc(100vw - 2rem);
       position: relative;
       width: 300px;
+
+      img {
+        border-radius: 5px;
+      }
     }
 
     &__instructions {

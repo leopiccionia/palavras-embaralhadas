@@ -1,5 +1,6 @@
 <script setup>
   import { useInterval, useTimeoutFn } from '@vueuse/core'
+  import { computed, ref } from 'vue'
 
   import GameOver from './GameOver.vue'
   import GameScore from './GameScore.vue'
@@ -14,35 +15,35 @@
 
   let shuffledWords = shuffleWords()
 
-  let status = $ref('start')
-  let step = $ref(0)
-  const points = $computed(() => step * 100)
-  const word = $computed(() => shuffledWords[step])
+  const status = ref('start')
+  const step = ref(0)
+  const points = computed(() => step.value * 100)
+  const word = computed(() => shuffledWords[step.value])
 
-  let { counter: timer, resume: startInterval } = $(useInterval(1_000, { controls: true, immediate: false }))
+  let { counter: timer, resume: startInterval } = useInterval(1_000, { controls: true, immediate: false })
   const { start: startTimeout } = useTimeoutFn(gameOver, 60_000, { controls: true, immediate: false })
 
   function gameOver () {
-    status = 'end'
+    status.value = 'end'
   }
 
   function nextStep () {
-    step += 1
-    if (step === shuffledWords.length) {
+    step.value += 1
+    if (step.value === shuffledWords.length) {
       gameOver()
     }
   }
 
   function restartGame () {
     shuffledWords = shuffleWords()
-    step = 0
-    timer = 0
-    status = 'playing'
+    step.value = 0
+    timer.value = 0
+    status.value = 'playing'
     startTimeout()
   }
 
   function startGame () {
-    status = 'playing'
+    status.value = 'playing'
     startTimeout()
     startInterval()
   }

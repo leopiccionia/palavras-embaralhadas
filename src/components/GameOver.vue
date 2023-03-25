@@ -1,12 +1,13 @@
 <script setup>
   import { useEventListener } from '@vueuse/core'
+  import { computed } from 'vue'
 
   const { points } = defineProps({
     points: Number,
   })
   const emit = defineEmits(['reset'])
 
-  const words = $computed(() => points / 100)
+  const words = computed(() => points / 100)
 
   useEventListener('keydown', (event) => {
     if (event.code === 'Enter') {
